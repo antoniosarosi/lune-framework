@@ -1,0 +1,40 @@
+{
+    "name": "antoniosarosi/lune-framework",
+    "description": "Simple PHP Framework inspired by Laravel",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lune\\": "./src/Lune/"
+        },
+        "files": [
+            "./src/Lune/Helpers/app.php",
+            "./src/Lune/Helpers/auth.php",
+            "./src/Lune/Helpers/http.php",
+            "./src/Lune/Helpers/session.php",
+            "./src/Lune/Helpers/string.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Antonio Sarosi",
+            "email": "sarosiantonio@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "symfony/console": "^6.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lune\\Tests\\": "./tests"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "php-cs-fixer": "php-cs-fixer fix --diff",
+        "tests": "phpunit --colors=always --testdox -v tests"
+    }
+}
