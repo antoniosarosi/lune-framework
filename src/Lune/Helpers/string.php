@@ -14,3 +14,18 @@ function snake_case(string $str) {
 
     return $str;
 }
+
+/**
+ * Convert string into camelCase.
+ * @param string $str
+ * @return string
+ */
+function camel_case(string $str) {
+    $str = preg_replace('/[^a-z0-9]+/i', ' ', $str);
+    $str = trim($str);
+    $str = ucwords($str);
+    $str = str_replace(" ", "", $str);
+    $str = lcfirst($str);
+
+    return $str;
+}
