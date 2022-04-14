@@ -8,6 +8,7 @@
         },
         "files": [
             "./src/Lune/Helpers/app.php",
+            "./src/Lune/Helpers/array.php",
             "./src/Lune/Helpers/auth.php",
             "./src/Lune/Helpers/http.php",
             "./src/Lune/Helpers/session.php",
