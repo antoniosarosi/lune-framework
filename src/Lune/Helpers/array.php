@@ -6,7 +6,9 @@
  * @return bool
  */
 function isAssociative(array $array): bool {
-    if (empty($array)) return false;
+    if (empty($array)) {
+        return false;
+    }
 
     $keys = array_keys($array);
 
@@ -19,7 +21,9 @@ function isAssociative(array $array): bool {
  * @return null|mixed
  */
 function first(array $array) {
-    if (empty($array)) return null;
+    if (empty($array)) {
+        return null;
+    }
 
     return $array[array_key_first($array)];
 }
@@ -30,7 +34,9 @@ function first(array $array) {
  * @return null|mixed
  */
 function last(array $array) {
-    if (empty($array)) return null;
+    if (empty($array)) {
+        return null;
+    }
     
     return $array[array_key_last($array)];
 }
