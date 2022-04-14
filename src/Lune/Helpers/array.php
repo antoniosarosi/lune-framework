@@ -37,6 +37,6 @@ function last(array $array) {
     if (empty($array)) {
         return null;
     }
-    
+
     return $array[array_key_last($array)];
 }
