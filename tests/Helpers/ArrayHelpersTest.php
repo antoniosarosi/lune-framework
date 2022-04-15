@@ -105,6 +105,61 @@ class ArrayHelpersTest extends TestCase {
         ];
     }
 
+    public function provideArrayFilterData() {
+        return [
+            [
+                ["first", "second", "third", "fourth"],
+                fn ($value, $key) => $key % 2 === 0,
+                ["first", "third"]
+            ],
+            [
+                ["first", "second", "third", "fourth"],
+                fn ($value) => $value === "fifth",
+                []
+            ],
+            [
+                [0, "1", 2, "3", 4],
+                fn ($value) => is_string($value),
+                ["1", "3"]
+            ],
+            [
+                ["first" => 100, "second" => 200, "third" => 300, "fourth" => 400],
+                fn ($value) => ($value / 100) % 2 === 0,
+                ["second" => 200, "fourth" => 400]
+            ],
+            [
+                [],
+                fn () => true,
+                []
+            ],
+            [
+                ["first", "second", "third", "fourth"],
+                fn () => false,
+                []
+            ],
+            [
+                ["first", "second", "third", "fourth"],
+                fn () => true,
+                ["first", "second", "third", "fourth"]
+            ],
+            [
+                ["first", "second" => 2, "third", "fourth" => 4, true, [6, 7, 8]],
+                fn ($value, $key) => is_string($key) && is_integer($value),
+                ["second" => 2, "fourth" => 4]
+            ],
+            [
+                [null],
+                fn ($value) => $value !== null,
+                []
+            ],
+            [
+                [[1, 2, 3], 10, [4, 5, 6], "a string", [7, 8, 9]],
+                fn ($value) => is_array($value),
+                [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+            ],
+        ];
+    }
+
     /**
      * @dataProvider provideIsAssociativeData
      */
@@ -124,5 +179,12 @@ class ArrayHelpersTest extends TestCase {
      */
     public function testLast($test, $expected) {
         $this->assertEquals($expected, last($test));
+    }
+
+    /**
+     * @dataProvider provideArrayFilterData
+     */
+    public function testFilter($test, $callback, $expected) {
+        $this->assertEquals($expected, filter($test, $callback));
     }
 }
