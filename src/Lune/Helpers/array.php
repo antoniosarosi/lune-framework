@@ -40,3 +40,28 @@ function last(array $array) {
 
     return $array[array_key_last($array)];
 }
+
+/**
+ * Retrieve new array using the given callback as a condition
+ * @param array $array
+ * @param callable $callback
+ * @return array
+ */
+function filter(array $array, callable $callback) {
+    $filteredArray = [];
+
+    $isAssociative = isAssociative($array);
+
+    foreach ($array as $key => $value) {
+        if (call_user_func($callback, $value, $key)) {
+            if ($isAssociative) {
+                $filteredArray[$key] = $value;
+                continue;
+            }
+
+            array_push($filteredArray, $value);
+        }
+    }
+
+    return $filteredArray;
+}
